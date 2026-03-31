@@ -5,7 +5,7 @@ pool = ThreadedConnectionPool(
     minconn=1,
     user="postgres",
     password="postgres",
-    host="localhost",
+    host="db",
     port=5432,
     database="af_db"
 )
