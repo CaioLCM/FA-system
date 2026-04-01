@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 
 import asyncio
-from src.database.schema import create_user
+from src.database.schema import create_user, get_users
 import secrets
 
 import logging
@@ -19,3 +19,12 @@ def create_user_():
         return {"message": f"API KEY para o seu usuário (guarde com carinho): {api_key}"}
     except Exception as E:
         raise HTTPException(400, "Erro ao criar usuário")
+
+@user.get("/")
+def get_users_():
+    try:
+        response = get_users()
+        return {"message": response}
+    except Exception as E:
+        logger.error(f"Erro ao buscar usuários: {E}")
+        raise HTTPException(400, "Erro ao buscar usuários")

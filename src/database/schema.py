@@ -41,3 +41,13 @@ def create_user(api_key):
     conn.commit()
     cursor.close()
     pool.putconn(conn)
+
+def get_users():
+    conn = pool.getconn()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM users;")
+    response = cursor.fetchall()
+    conn.commit()
+    cursor.close()
+    pool.putconn(conn)
+    return response
