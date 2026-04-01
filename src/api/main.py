@@ -6,13 +6,14 @@ import logging
 
 from src.database.schema import init_db
 
+from src.api.routes.analyse import analyse
+from src.api.routes.user import user
+
 logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info("Starting API")
     try:
-        logger.info("Creating DB connection")
         init_db()
     except Exception as E:
         logger.error(f"Failed DB connection: {E}")
@@ -31,3 +32,6 @@ app.add_middleware(
 @app.get("/health")
 def get_health():
     return {"message": "on!"}
+
+app.include_router(analyse)
+app.include_router(user)
