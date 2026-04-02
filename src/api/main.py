@@ -8,6 +8,7 @@ from src.database.schema import init_db
 
 from src.api.routes.analyse import analyse
 from src.api.routes.user import user
+from src.api.routes.asset import asset
 
 logger = logging.getLogger(__name__)
 
@@ -35,3 +36,4 @@ def get_health():
 
 app.include_router(analyse)
 app.include_router(user)
+app.include_router(asset)
